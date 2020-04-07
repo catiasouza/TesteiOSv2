@@ -25,6 +25,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+       
+        let controler = storyboard.instantiateViewController(identifier: "user")
+        present(controler,animated: true,completion: nil)
     }
     func configButton(){
         loginB.layer.cornerRadius = 4
