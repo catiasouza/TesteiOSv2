@@ -8,23 +8,42 @@
 
 import UIKit
 
-class UserViewController: UIViewController {
-
+class UserViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    
+    @IBOutlet weak var colletionView: UICollectionView!
+    
+    
+    let  conta: [String] = ["contavvddvv"]
+    let  data: [String] = ["datavvvvee"]
+    let  valor: [String] = ["valorvvccv"]
+    let  pagamento: [String] = ["pagamentosvvaavv"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        colletionView.delegate = self
+        colletionView.dataSource = self
+       
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       
+        return conta.count
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = colletionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)as! UserCollectionViewCell
+
+        cell.account.text = conta[indexPath.row]
+        cell.date.text = data[indexPath.row]
+        cell.money.text = valor[indexPath.row]
+        cell.pag.text = pagamento[indexPath.row]
+        return cell
+        
+    }
+    
 
 }
