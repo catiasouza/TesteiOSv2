@@ -10,11 +10,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var userTF: UITextField!
+    
+    @IBOutlet weak var passwordTF: UITextField!
+    
+    @IBOutlet weak var loginB: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        configButton()
+        
     }
 
-
+    @IBAction func loginPressed(_ sender: Any) {
+    }
+    func configButton(){
+        loginB.layer.cornerRadius = 4
+        loginB.layer.masksToBounds = true
+    }
 }
 
