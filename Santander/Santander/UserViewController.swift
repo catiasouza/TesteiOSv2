@@ -13,8 +13,9 @@ class UserViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
     
     @IBOutlet weak var colletionView: UICollectionView!
     
-    
-    let  conta: [String] = ["contavvddvv"]
+    var service =  Service()
+     var arrayApi:Array<Any>?
+   
     let  data: [String] = ["datavvvvee"]
     let  valor: [String] = ["valorvvccv"]
     let  pagamento: [String] = ["pagamentosvvaavv"]
@@ -25,24 +26,26 @@ class UserViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         colletionView.delegate = self
         colletionView.dataSource = self
        
+       
     }
-    
+    func api(){
+        Service().api { (array) in
+            self.arrayApi = array
+        }
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
-        return conta.count
+        return service.bancos.count
+        
+        //return conta.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = colletionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)as! UserCollectionViewCell
-
-        cell.account.text = conta[indexPath.row]
-        cell.date.text = data[indexPath.row]
-        cell.money.text = valor[indexPath.row]
-        cell.pag.text = pagamento[indexPath.row]
+        let teste = service.arrayRecuperado
         return cell
-        
     }
     
 
